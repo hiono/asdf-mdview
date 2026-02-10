@@ -1,8 +1,12 @@
 <div align="center">
 
-# asdf-mdview [![Build](https://github.com/hiono/asdf-mdview/actions/workflows/build.yml/badge.svg)](https://github.com/hiono/asdf-mdview/actions/workflows/build.yml) [![Lint](https://github.com/hiono/asdf-mdview/actions/workflows/lint.yml/badge.svg)](https://github.com/hiono/asdf-mdview/actions/workflows/lint.yml)
+# asdf-mdview
 
-[mdview](https://github.com/hiono/mdview) plugin for the [asdf version manager](https://asdf-vm.com).
+[mdview](https://gist.github.com/karunru/512b78b430fad751d2466b72da4a4893) plugin for the [asdf version manager](https://asdf-vm.com).
+
+mdview is a Markdown viewer with mermaid-ascii support (glow wrapper).
+
+Inspired by [karunru's Zenn article](https://zenn.dev/karunru/articles/989af4abf9d71f). Thanks for the wonderful script!
 
 </div>
 
@@ -15,10 +19,10 @@
 
 # Dependencies
 
-**TODO: adapt this section**
-
 - `bash`, `curl`, `tar`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
+- `python3` - required to run the mdview script
+- `glow` - required for markdown rendering
+- `mermaid-ascii` - required for mermaid diagram conversion
 
 # Install
 
@@ -33,7 +37,7 @@ asdf plugin add mdview https://github.com/hiono/asdf-mdview.git
 mdview:
 
 ```shell
-# Show all installable versions
+# Show all installable versions (commit hashes)
 asdf list-all mdview
 
 # Install specific version
@@ -53,8 +57,8 @@ install & manage versions.
 
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
 
-[Thanks goes to these contributors](https://github.com/hiono/asdf-mdview/graphs/contributors)!
+[Thanks goes to these contributors](https://github.com/karunru/graphs/contributors)!
 
 # License
 
-See [LICENSE](LICENSE) © [Hiro Ono](https://github.com/hiono/)
+See [LICENSE](LICENSE) © [karunru](https://karunru.github.io/)
