@@ -20,16 +20,16 @@ fi
 
 sort_versions() {
 	sed 'h; s/[+-]/./g; s/.p\([[:digit:]]\)/.z\1/; s/$/.z/; G; s/\n/ /' |
-	  LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n -k 5,5n | awk '{print $2}'
+		LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n -k 5,5n | awk '{print $2}'
 }
 
 list_all_versions() {
 	curl "${curl_opts[@]}" "${GH_REPO}/commits" 2>/dev/null |
-	  grep -o '"version": "[^"]*"' |
-	  cut -d'"' -f4 |
-	  cut -c1-7 |
-	  head -50 ||
-	  echo "5ca9032"
+		grep -o '"version": "[^"]*"' |
+		cut -d'"' -f4 |
+		cut -c1-7 |
+		head -50 ||
+		echo "5ca9032"
 }
 
 download_release() {
@@ -38,7 +38,7 @@ download_release() {
 
 	local raw_url="https://gist.githubusercontent.com/karunru/512b78b430fad751d2466b72da4a4893/raw/${GIST_FILENAME}"
 	if [ -n "$version" ]; then
-	  raw_url="https://gist.githubusercontent.com/karunru/512b78b430fad751d2466b72da4a4893/raw/${GIST_FILENAME}?h=${version}"
+		raw_url="https://gist.githubusercontent.com/karunru/512b78b430fad751d2466b72da4a4893/raw/${GIST_FILENAME}?h=${version}"
 	fi
 
 	echo "* Downloading $TOOL_NAME release $version..."
@@ -51,21 +51,21 @@ install_version() {
 	local install_path="${3%/bin}/bin"
 
 	if [ "$install_type" != "version" ]; then
-	  fail "asdf-$TOOL_NAME supports version installs only"
+		fail "asdf-$TOOL_NAME supports version installs only"
 	fi
 
 	(
-	  mkdir -p "$install_path"
-	  cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+		mkdir -p "$install_path"
+		cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
-	  local tool_cmd
-	  tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
-	  test -x "$install_path/$tool_cmd" || chmod +x "$install_path/$tool_cmd" || true
-	  test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
+		local tool_cmd
+		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
+		test -x "$install_path/$tool_cmd" || chmod +x "$install_path/$tool_cmd" || true
+		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
 
-	  echo "$TOOL_NAME $version installation was successful!"
+		echo "$TOOL_NAME $version installation was successful!"
 	) || (
-	  rm -rf "$install_path"
-	  fail "An error occurred while installing $TOOL_NAME $version."
+		rm -rf "$install_path"
+		fail "An error occurred while installing $TOOL_NAME $version."
 	)
 }
