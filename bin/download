@@ -14,5 +14,5 @@ release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME"
 download_release "$ASDF_INSTALL_VERSION" "$release_file"
 
 if [ ! -f "$release_file" ]; then
-  fail "Downloaded file not found at $release_file"
+	fail "Downloaded file not found at $release_file"
 fi
