@@ -1,0 +1,7 @@
+[plugins]
+mdview = "https://github.com/hiono/asdf-mdview.git"
+
+[tools]
+mdview = "latest"
+glow = "latest"
+"npm:mermaid-ascii" = "latest"

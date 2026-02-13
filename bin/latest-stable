@@ -10,11 +10,11 @@ source "${plugin_dir}/lib/utils.bash"
 curl_opts=(-fsSL)
 
 if [ -n "${GITHUB_API_TOKEN:-}" ]; then
-	curl_opts=("${curl_opts[@]}" -H "Authorization: token $GITHUB_API_TOKEN")
+  curl_opts=("${curl_opts[@]}" -H "Authorization: token $GITHUB_API_TOKEN")
 fi
 
 version=$(curl "${curl_opts[@]}" "https://api.github.com/gists/512b78b430fad751d2466b72da4a4893" |
-	python3 -c "import sys, json;
+  python3 -c "import sys, json;
 try:
     commits = json.load(sys.stdin)['history'];
     if commits:
@@ -23,7 +23,7 @@ except:
     sys.exit(1)" 2>/dev/null)
 
 if [ -z "$version" ]; then
-	version=$(list_all_versions | sort_versions | tail -n1 | xargs echo)
+  version=$(list_all_versions | sort_versions | tail -n1 | xargs echo)
 fi
 
 printf "%s\n" "$version"

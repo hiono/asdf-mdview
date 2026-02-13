@@ -1,1 +1,3 @@
+# asdf plugin default ignores
 .env
+.mise.toml
